@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>ES6-Functions</h1>
+
+    <form onsubmit="submitFunction(); return false">
+
+        Total marks<input type="num" name="Obtained" id="num1" placeholder="Enter Obtained Marks" value="100" required>
+        <br><br> Obtain marks<input type="num" name="Total" id="num2" placeholder="Enter Total Marks" required>
+        <br><br>
+        <button>Calculate</button>
+    </form>
+
+    <h2 id="Result"></h2>
+    <script>
+        function calcPercentage(Total, Obtain) {
+
+
+            if (!Total || !Obtain) {
+
+                return (null);
+
+            }
+
+            //isNAN is used for check for a number
+
+            if (typeof(Total) !== "number" || typeof(Obtain) !== "number") {
+
+                return (null);
+
+            }
+
+            if (Obtain > Total) {
+
+                return (null);
+            }
+
+            let Percentage = (Obtain * 100) / Total;
+
+            //toFixed is used for deducing decimals point
+
+            Percentage = Percentage.toFixed(0);
+
+            Percentage = Number(Percentage);
+            return Percentage;
+        }
+
+        function submitFunction() {
+
+
+            let Total = +document.querySelector("#num1").value
+            let Obtain = +document.querySelector("#num2").value
+
+            let Result = calcPercentage(Total, Obtain);
+            if (Result) {
+
+                document.querySelector("#Result").innerHTML = `You Got ` + Result + `%`;
+            } else {
+                let Result = document.querySelector("#Result").innerHTML = `Invalid Number`;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
